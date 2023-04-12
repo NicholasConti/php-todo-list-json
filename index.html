@@ -26,15 +26,15 @@
                 <div class="bodylist">
                     <ul v-if="myTodo.length > 0">
                         <!-- elementi creati con vue -->
-                        <li v-for="(todo, index) in myTodo"><span>{{ todo.text }}</span><i
+                        <li v-for="(todo, index) in myTodo"><span :class="{done: todo.done}">{{ todo.text }}</span><i
                                 class="fa-regular fa-trash-can"></i>
                         </li>
                     </ul>
                     <div class="noelements" v-else>LA LISTA É VUOTA!</div>
 
                 </div>
-                <div class="addmenu">
-                    <form @submit.prevent="addTodo">
+                <div>
+                    <form @submit.prevent="addTodo" class="addmenu">
                         <input type="text" placeholder="Inserisci un todo" v-model="newTodo">
                         <button type="submit" class="add"><i class="fa-regular fa-square-plus"></i></button>
                     </form>
