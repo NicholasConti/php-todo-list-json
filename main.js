@@ -8,6 +8,7 @@ createApp({
         }
     },
     methods: {
+        // funzione per aggiungere todo
         addTodo() {
             const param = {
                 newTodo: this.newTodo
@@ -21,10 +22,22 @@ createApp({
                 });
             this.newTodo = '';
         },
+        // funzione per cambiare il "done" del todo
         toggleDone(index) {
             axios.get('server.php', {
                 params: {
                     index
+                }
+            })
+                .then((response) => {
+                    this.myTodo = response.data;
+                })
+        },
+        // funzione per eliminare un todo
+        deleteTodo(iDelete) {
+            axios.get('server.php', {
+                params: {
+                    iDelete
                 }
             })
                 .then((response) => {

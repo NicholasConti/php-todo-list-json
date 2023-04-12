@@ -27,8 +27,8 @@
                     <ul v-if="myTodo.length > 0">
                         <!-- elementi creati con vue -->
                         <li v-for="(todo, index) in myTodo"><span :class="{done: todo.done}"
-                                @click="toggleDone(index)">{{ todo.text }}</span><i
-                                class=" fa-regular fa-trash-can"></i>
+                                @click="toggleDone(index)">{{ todo.text }}</span><i class=" fa-regular fa-trash-can"
+                                @click="deleteTodo(index)"></i>
                         </li>
                     </ul>
                     <div class="noelements" v-else>LA LISTA É VUOTA!</div>

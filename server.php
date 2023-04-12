@@ -1,8 +1,12 @@
 <?php
+
 $newTodo = isset($_POST['newTodo']) ? $_POST['newTodo'] : NULL;
 $indexTodo = isset($_GET['index']) ? $_GET['index'] : NULL;
+$indexDelete = isset($_GET['iDelete']) ? $_GET['iDelete'] : NULL;
+
 //trasformo file json in una stringa
 $todo = file_get_contents(__DIR__ . '/todo.json');
+
 //aggiunta todo
 if ($newTodo !== NULL) {
     $todo = json_decode($todo, true);
@@ -15,6 +19,7 @@ if ($newTodo !== NULL) {
     $todo = json_encode($todo);
     file_put_contents(__DIR__ . '/todo.json', $todo);
 }
+
 //toggle todo
 if ($indexTodo !== NULL) {
     $todo = json_decode($todo, true);
@@ -27,6 +32,13 @@ if ($indexTodo !== NULL) {
     file_put_contents(__DIR__ . '/todo.json', $todo);
 }
 
+//delete todo
+if ($indexDelete !== NULL) {
+    $todo = json_decode($todo, true);
+    array_splice($todo, $indexDelete, 1);
+    $todo = json_encode($todo);
+    file_put_contents(__DIR__ . '/todo.json', $todo);
+}
 //restituisco content type: json
 header('Content-Type: application/json');
 
