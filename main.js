@@ -3,10 +3,24 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-            myTodo: []
+            myTodo: [],
+            newTodo: ''
         }
     },
     methods: {
+        addTodo() {
+            const param = {
+                newTodo: this.newTodo
+            };
+
+            axios.post('server.php', param, {
+                headers: { 'Content-Type': 'multipart/form-data' }
+            })
+                .then((response) => {
+                    this.myTodo = response.data;
+                });
+            this.newTodo = '';
+        }
     },
     created() {
         axios.get('server.php')

@@ -34,8 +34,10 @@
 
                 </div>
                 <div class="addmenu">
-                    <input type="text" placeholder="Inserisci un todo">
-                    <button class="add"><i class="fa-regular fa-square-plus"></i></button>
+                    <form @submit.prevent="addTodo">
+                        <input type="text" placeholder="Inserisci un todo" v-model="newTodo">
+                        <button type="submit" class="add"><i class="fa-regular fa-square-plus"></i></button>
+                    </form>
                 </div>
             </div>
         </div>
