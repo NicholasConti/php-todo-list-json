@@ -4,7 +4,7 @@ createApp({
     data() {
         return {
             myTodo: [],
-            newTodo: ''
+            newTodo: '',
         }
     },
     methods: {
@@ -20,6 +20,16 @@ createApp({
                     this.myTodo = response.data;
                 });
             this.newTodo = '';
+        },
+        toggleDone(index) {
+            axios.get('server.php', {
+                params: {
+                    index
+                }
+            })
+                .then((response) => {
+                    this.myTodo = response.data;
+                })
         }
     },
     created() {

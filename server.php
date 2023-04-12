@@ -1,8 +1,9 @@
 <?php
 $newTodo = isset($_POST['newTodo']) ? $_POST['newTodo'] : NULL;
+$indexTodo = isset($_GET['index']) ? $_GET['index'] : NULL;
 //trasformo file json in una stringa
 $todo = file_get_contents(__DIR__ . '/todo.json');
-//gestione aggiunta hotel
+//aggiunta todo
 if ($newTodo !== NULL) {
     $todo = json_decode($todo, true);
     $todo[] = [
@@ -11,6 +12,17 @@ if ($newTodo !== NULL) {
 
     ];
 
+    $todo = json_encode($todo);
+    file_put_contents(__DIR__ . '/todo.json', $todo);
+}
+//toggle todo
+if ($indexTodo !== NULL) {
+    $todo = json_decode($todo, true);
+    if ($todo[$indexTodo]['done'] === true) {
+        $todo[$indexTodo]['done'] = false;
+    } else {
+        $todo[$indexTodo]['done'] = true;
+    }
     $todo = json_encode($todo);
     file_put_contents(__DIR__ . '/todo.json', $todo);
 }
