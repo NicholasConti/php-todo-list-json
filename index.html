@@ -5,15 +5,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP Todo list</title>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- my css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- vuejs -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>PHP-TODO-LIST</title>
 </head>
 
 <body>
-    <div id="app"></div>
-    <!-- vuejs -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+        <div class="container">
+            <div class="list" v-cloak>
+                <h1>My Todo List</h1>
+                <div class="bodylist">
+                    <ul v-if="myTodo.length > 0">
+                        <!-- elementi creati con vue -->
+                        <li v-for="(todo, index) in myTodo"><span>{{ todo.text }}</span><i
+                                class="fa-regular fa-trash-can"></i>
+                        </li>
+                    </ul>
+                    <div class="noelements" v-else>LA LISTA É VUOTA!</div>
+
+                </div>
+                <div class="addmenu">
+                    <input type="text" placeholder="Inserisci un todo">
+                    <button class="add"><i class="fa-regular fa-square-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- my js -->
-    <script src="js/mian.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
